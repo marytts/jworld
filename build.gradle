@@ -129,6 +129,14 @@ publishing {
             artifact sourceJar {
                 classifier 'sources'
             }
+            pom {
+                licenses {
+                    license {
+                        name = 'BSD-3-Clause'
+                        url = 'https://opensource.org/licenses/BSD-3-Clause'
+                    }
+                }
+            }
         }
     }
     repositories {
