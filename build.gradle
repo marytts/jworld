@@ -104,11 +104,16 @@ model {
                 }
                 includeEmptyDirs = false
             }
+            from 'LICENSE.md', {
+                rename { 'LICENSE-jworld.md' }
+            }
+            from 'World', {
+                include 'LICENSE.txt'
+                rename { 'LICENSE-world.txt' }
+            }
         }
     }
 }
-
-
 
 
 /**********************************************************************************************
@@ -120,6 +125,13 @@ description "Artifact containing a wrapper for the World vocoder"
 
 task sourceJar(type: Jar) {
     from sourceSets.main.allJava
+    from 'LICENSE.md', {
+        rename { 'LICENSE-jworld.md' }
+    }
+    from 'World', {
+        include 'LICENSE.txt'
+        rename { 'LICENSE-world.txt' }
+    }
 }
 
 publishing {
@@ -128,6 +140,14 @@ publishing {
             from components.java
             artifact sourceJar {
                 classifier 'sources'
+            }
+            pom {
+                licenses {
+                    license {
+                        name = 'BSD-3-Clause'
+                        url = 'https://opensource.org/licenses/BSD-3-Clause'
+                    }
+                }
             }
         }
     }
